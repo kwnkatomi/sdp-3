@@ -48,5 +48,37 @@ public class Main {
 
         System.out.println("160 characters accepted: " + accepted160);
         System.out.println("161 characters accepted: " + accepted161);
+
+        System.out.println("\nURGENT NOTIFICATION THROUGH TELEGRAM");
+
+        Notification urgent =
+                new UrgentNotification(telegram, sms);
+
+        urgent.send("user-1", "Help, this is urgent.");
+
+
+        System.out.println("\nRUNTIME SWITCH TO EMAIL");
+
+        urgent.setSender(email);
+
+        urgent.send("sara@example.com", "Help, this is urgent.");
+
+
+        System.out.println("\nTELEGRAM UNAVAILABLE");
+
+        urgent.setSender(telegram);
+        telegram.setAvailable(false);
+
+        urgent.send("user-1", "Help, this is urgent.");
+
+
+        System.out.println("\nBOTH PROVIDERS UNAVAILABLE");
+
+        sms.setAvailable(false);
+
+        urgent.send("user-1", "Help, this is urgent.");
+
+        telegram.setAvailable(true);
+        sms.setAvailable(true);
     }
 }
