@@ -92,9 +92,30 @@ public class Main {
 
         batch.sendBatch("Please don't forget to bring snacks! :P");
 
-
         System.out.println("\nBATCH WITH AN OVERSIZED MESSAGE");
 
         batch.sendBatch("A".repeat(161));
+
+        System.out.println("\nMARKETING THROUGH PUSH");
+
+        PushNotificationSender push = new PushNotificationSender();
+
+        Notification marketing = new MarketingNotification(push);
+
+        marketing.send("device-sara-phone", "Nothing beats jet2holiday! And now you can save 50 pounds per person!");
+
+
+        System.out.println("\nMARKETING THROUGH EXISTING EMAIL");
+
+        marketing.setSender(email);
+
+        marketing.send("sara@example.com", "Nothing beats jet2holiday! And now you can save 50 pounds per person!");
+
+
+        System.out.println("\nEXISTING ENCRYPTED TYPE THROUGH PUSH");
+
+        Notification encryptedPush = new EncryptedNotification(push);
+
+        encryptedPush.send("device-sara-phone", "Hello push notification!");
     }
 }
