@@ -80,5 +80,21 @@ public class Main {
 
         telegram.setAvailable(true);
         sms.setAvailable(true);
+
+        System.out.println("\nBATCH THROUGH SMS");
+
+        ScheduledBatchNotification batch =
+                new ScheduledBatchNotification(sms);
+
+        batch.addRecipient("+77001111111");
+        batch.addRecipient("+77002222222");
+        batch.addRecipient("+77003333333");
+
+        batch.sendBatch("Please don't forget to bring snacks! :P");
+
+
+        System.out.println("\nBATCH WITH AN OVERSIZED MESSAGE");
+
+        batch.sendBatch("A".repeat(161));
     }
 }
